@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import DetailsForm from './components/DetailsForm/DetailsForm';
+import AllDetails from './components/DetailsInUI/AllDetails';
 
 function App() {
+
+  const [newEntry, setNewEntry] = useState({
+    id: "",
+    price: "",
+    name: "",
+    category: ""
+  });
+
+  const liftUpFormValueInApp = (obj) => {
+    setNewEntry(obj);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <DetailsForm liftUpValue={liftUpFormValueInApp} />
+      <AllDetails latestEntry={newEntry} />
+    </React.Fragment>
   );
 }
 
